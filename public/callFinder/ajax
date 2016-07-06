@@ -1,0 +1,25 @@
+$.ajax({
+    url:"../callFinder/peticiones.php",
+    type:"POST",
+    data:{
+		action:"getRecordings",
+		agents:"1686",
+		campaign:"ALL",
+		custom_fields:"",
+		date_from:"2014-05-15",
+		date_to:"2014-05-15",
+		dispos:"",
+		hour_from:"00:00:00",
+		hour_to:"23:59:59",
+		ingroups:"",
+		length_from:"",
+		length_to:"",
+		page:"1",
+		phone_number:"",
+		source:"cloud",
+		type:"ALL",
+	},
+    success:function(data){
+        
+    }
+})

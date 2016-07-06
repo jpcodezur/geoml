@@ -1,0 +1,154 @@
+<div id="sidebar" class="sidebar">
+    <div id="sidebar-shortcuts" class="sidebar-shortcuts">
+        <div id="sidebar-shortcuts-large" class="sidebar-shortcuts-large">
+            
+        </div>
+
+        <div id="sidebar-shortcuts-mini" class="sidebar-shortcuts-mini">
+            <span class="btn btn-success"></span>
+
+            <span class="btn btn-info"></span>
+
+            <span class="btn btn-warning"></span>
+
+            <span class="btn btn-danger"></span>
+        </div>
+    </div><!--#sidebar-shortcuts-->
+
+    <ul class="nav nav-list">
+        <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"index"))))?"active":"" ?>">
+            <a href="<?php echo $this->url("usuarios",array("controller"=>"index","action"=>"index")) ?>">
+                <i class="icon-dashboard"></i>
+                <span class="menu-text"> Dashboard </span>
+            </a>
+        </li>
+        <?php if( $this->acl->isAllowed($this->role,"usuarios:usuario","index")): ?>
+            <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"usuario"))))?"active":"" ?>">
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-group"></i>
+                    <span class="menu-text"> Users </span>
+
+                    <b class="arrow icon-angle-down"></b>
+                </a>
+
+                <ul class="submenu">
+
+                    <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"usuario","action"=>"list"))))?"active":"" ?>">
+                        <a href="<?php echo $this->url("usuarios",array("controller"=>"usuario","action"=>"list")) ?>/">
+                            <i class="icon-double-angle-right"></i>
+                            List
+                        </a>
+                    </li>
+
+                    <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"usuario","action"=>"add"))))?"active":"" ?>">
+                        <a href="<?php echo $this->url("usuarios",array("controller"=>"usuario","action"=>"add")) ?>">
+                            <i class="icon-double-angle-right"></i>
+                            New
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+        <?php if( $this->acl->isAllowed($this->role,"usuarios:publicacion","index")): ?>
+            <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"usuario"))))?"active":"" ?>">
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span class="menu-text"> Publicaciones </span>
+
+                    <b class="arrow icon-angle-down"></b>
+                </a>
+
+                <ul class="submenu">
+
+                    <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"usuario","action"=>"list"))))?"active":"" ?>">
+                        <a href="<?php echo $this->url("usuarios",array("controller"=>"usuario","action"=>"list")) ?>/">
+                            <i class="icon-double-angle-right"></i>
+                            Publicar Articulos
+                        </a>
+                    </li>
+
+                    <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"usuario","action"=>"add"))))?"active":"" ?>">
+                        <a href="<?php echo $this->url("usuarios",array("controller"=>"usuario","action"=>"add")) ?>">
+                            <i class="icon-double-angle-right"></i>
+                            Articulos Publicados
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+        <?php if( $this->acl->isAllowed($this->role,"usuarios:mensajes","index")): ?>
+            <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"usuario"))))?"active":"" ?>">
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-envelope"></i>
+                    <span class="menu-text"> Mensajeria </span>
+
+                    <b class="arrow icon-angle-down"></b>
+                </a>
+
+                <ul class="submenu">
+
+                    <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"usuario","action"=>"add"))))?"active":"" ?>">
+                        <a href="<?php echo $this->url("usuarios",array("controller"=>"usuario","action"=>"add")) ?>">
+                            <i class="icon-double-angle-right"></i>
+                            Articulos Publicados
+                        </a>
+                    </li>
+
+                    <li class="<?php echo (strpos($this->serverUrl(true),$this->url("usuarios",array("controller"=>"usuario","action"=>"list"))))?"active":"" ?>">
+                        <a href="<?php echo $this->url("usuarios",array("controller"=>"usuario","action"=>"list")) ?>/">
+                            <i class="icon-double-angle-right"></i>
+                            Publicar Articulos
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+        <?php endif; ?>
+        
+
+        
+        <?php if( $this->acl->isAllowed($this->role,"usuarios:mensaje","msgs")): ?>
+        <!--<li>
+            <a class="dropdown-toggle" href="#">
+                <i class="icon-envelope"></i>
+                <span class="menu-text"> Messages </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+            
+            <ul class="submenu">
+                
+                <li>
+                    <a href="<?php echo $this->url("usuarios",array("controller"=>"mensaje","action"=>"new")) ?>/">
+                        <i class="icon-double-angle-right"></i>
+                        Redactar
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="<?php echo $this->url("usuarios",array("controller"=>"mensaje","action"=>"msgs")) ?>/">
+                        <i class="icon-double-angle-right"></i>
+                        Recibidos
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="<?php echo $this->url("usuarios",array("controller"=>"mensaje","action"=>"msgsenviados")) ?>">
+                        <i class="icon-double-angle-right"></i>
+                        Enviados
+                    </a>
+                </li>
+                
+            </ul>
+        
+        </li>--
+        
+        <?php endif; ?>
+        
+    </ul><!--/.nav-list-->
+
+    <div id="sidebar-collapse" class="sidebar-collapse">
+        <i class="icon-double-angle-left"></i>
+    </div>
+</div>
