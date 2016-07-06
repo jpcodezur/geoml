@@ -358,7 +358,8 @@ class UsuarioDao implements IUsuarioDao {
         $result = false;
 
         $data = array(
-            "md5" => md5($user->getClave()));
+            "md5" => md5($user->getClave()),
+        );
 
         if ($user->getAvatar()) {
             $data["avatar"] = $user->getAvatar();
