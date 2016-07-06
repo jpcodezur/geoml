@@ -337,9 +337,9 @@ class UsuarioDao implements IUsuarioDao {
             "estado" => $user->getEstado()
         );
         
-        if($user->getClave()){
+        /*if($user->getClave()){
             $data["md5"] = $user->getClave();
-        }
+        }*/
 
         if ($user->getAvatar()) {
             $data["avatar"] = $user->getAvatar();
@@ -353,25 +353,53 @@ class UsuarioDao implements IUsuarioDao {
 
         return array("error" => "1", "usuario" => $user);
     }
-	
-	public function updatePassword($user) {
+
+    public function updatePassword($user) {
         $result = false;
 
         $data = array(
             "md5" => md5($user->getClave()),
+            "tipo" => $user->getTipo(),
         );
 
         if ($user->getAvatar()) {
             $data["avatar"] = $user->getAvatar();
         }
-        
+
         $result = $this->tableGateway->update($data, array("id" => $user->getId()));
-        
+
         if($result){
             return array("error" => "0", "usuario" => $user);
         }
 
         return array("error" => "1", "usuario" => $user);
+    }
+
+    public function updateAvatar($user,$file) {
+        if($file['avatar']['size'] > 0) {
+            $fileName = $file['avatar']['name'];
+            $tmpName  = $file['avatar']['tmp_name'];
+            $fileSize = $file['avatar']['size'];
+            $fileType = $file['avatar']['type'];
+
+            $fp      = fopen($tmpName, 'r');
+            $content = fread($fp, filesize($tmpName));
+            $content = addslashes($content);
+            fclose($fp);
+
+            $data = array(
+                "avatar" => $content
+            );
+
+            $result = $this->tableGateway->update($data, array("id" => $user->getId()));
+
+            if($result){
+                return array("error" => "0", "usuario" => $user);
+            }
+
+            return array("error" => "1", "usuario" => $user);
+
+        }
     }
 
     public function delete($id) {

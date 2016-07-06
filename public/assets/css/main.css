@@ -155,3 +155,13 @@ input:-moz-placeholder {
 .mentions-input-box .mentions {
     display:none !important;
 }
+.imagen-control{
+    width: 125px;
+    margin-left: 15px !important;
+    height: 125px;
+    margin: 5px;
+}
+.ace-file-input input[type=file]{
+    width: 1px !important;
+    height: 1px !important;
+}

@@ -334,7 +334,10 @@ class LoginController extends AbstractActionController {
             if ($pass && strlen($pass) < 4) {
                 $mensaje = "Error: La password debe ser de almenos 4 caracteres";
             } else {
-                $this->updateUser($_REQUEST);
+                $result = $this->updateUser($user,$_REQUEST);
+                if($result["error"]){
+                    $status = false;
+                }
             }
 
 
@@ -357,18 +360,37 @@ class LoginController extends AbstractActionController {
         ));
     }
 
-    public function updateUser($params){
+    public function updateUser($pUser,$params){
         $user = new Usuario();
+
+        $upload = new \Zend\File\Transfer\Transfer();
+
+        $files = $upload->getFileInfo();
+
+        foreach ($files as $file => $info) {
+            $avatar = "";
+            if ($info["tmp_name"] != "") {
+                $avatar = file_get_contents($info["tmp_name"]);
+                $user->setAvatar($avatar);
+            }
+        }
+
+        $user->setId($pUser->getId());
         $user->setEmail($params["email"]);
         $user->setNombre($params["nom"]);
         $user->setApellido($params["apellido"]);
+        $user->setTipo($pUser->getTipo());
 
         if($params["password"] && ($params["password"] == $params["repassword"])){
             $user->setClave(($params["password"]));
             $result = $this->usuarioDao->updatePassword($user);
+            if($result["error"]){
+                return $result;
+            }
         }
-        $result = $this->usuarioDao->update($user);
 
+        return $this->usuarioDao->update($user);
     }
+    
 
 }

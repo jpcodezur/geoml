@@ -31,9 +31,15 @@ if(!$usuario){
     <div class="row-fluid">
         <div class="span12">
             <!--PAGE CONTENT BEGINS-->
+            <?php $alertType = "alert-success" ?>
             <?php if($this->mensaje): ?>
+                <?php
+                if($this->mensaje == "Error al actualizar"):
+                    $alertType = "alert-danger";
+                endif;
+                ?>
             <div class="clearfix">
-                <div class="pull-left alert alert-success inline no-margin">
+                <div class="pull-left alert <?php echo $alertType ?> inline no-margin">
                     <button type="button" class="close" data-dismiss="alert">
                         <i class="icon-remove"></i>
                     </button>
@@ -53,7 +59,7 @@ if(!$usuario){
 
                         <div class="space"></div>
 
-                        <form class="form-horizontal" action="<?php echo $this->basePath() ?>/usuarios/login/modificarusuario" method="post"/>
+                        <form enctype="multipart/form-data" class="form-horizontal" action="<?php echo $this->basePath() ?>/usuarios/login/modificarusuario" method="post"/>
                         <div class="tabbable">
                             <!--<ul class="nav nav-tabs padding-16">
                                 <li class="active">
@@ -84,21 +90,21 @@ if(!$usuario){
 
                                     <hr />
                                      <div class="control-group">
-                                    <label class="control-label" for="form-field-pass1">Nombre</label>
+                                    <label class="control-label" for="form-field-pass1">Avatar</label>
                                         <div class="widget-main">
                                             <?php if($usuario->getAvatar()): ?>
                                             <img class="imagen-control" src="data:image/jpeg;base64,<?php echo base64_encode($usuario->getAvatar()); ?>">
                                             <?php endif; ?>
-                                            <input 
+                                            <input
                                                 estado=""
                                                 type="file" 
                                                 id_input="" 
                                                 tipo="" 
                                                 id_pagina=""  
-                                                name="avatar" 
-                                                class="control id-input-file" <?php //echo ($input->getRequired()) ? "required='required'" : "" ?> 
-                                                onchange=""
-                                                />
+                                                name="avatar"
+                                                class=""
+                                            />
+
                                         </div>
                                     </div>
                                     
